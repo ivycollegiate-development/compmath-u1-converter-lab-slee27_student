@@ -22,24 +22,18 @@ KG_PER_LB = 0.45359237
 
 
 def get_number(prompt):
-    """Ask the user for a number.
-
-    BUG: if the user types something that is not a number,
-    float() raises ValueError and the whole program crashes.
-    FIX ME: wrap this in try/except so bad input asks again.
-    """
-    raw = input(prompt)
-    return float(raw)
+    """Ask the user for a number and keep asking until it's valid."""
+    while True:
+        raw = input(prompt)
+        try:
+            return float(raw)
+        except ValueError:
+            print("That is not a number. Please try again.")
 
 
 def f_to_c(f):
-    """Convert Fahrenheit to Celsius.
-
-    BUG: this formula is MISSING a step — it gives a quietly wrong
-    answer with no crash and no error.
-    FIX ME: compare it with the code-along version from today's lesson.
-    """
-    return f * 5 / 9
+    """Convert Fahrenheit to Celsius."""
+    return (f - 32) * 5 / 9
 
 
 def c_to_f(c):
